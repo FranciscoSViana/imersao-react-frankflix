@@ -1,20 +1,21 @@
-import React from 'react';
-import Logo from '../../assets/img/Frankflix.png';
-import './Menu.css'
-import Button from '../Button'
+import React from "react";
+import { Link } from 'react-router-dom';
+import Logo from "../../assets/img/Frankflix.png";
+import { LogoImage, MenuWrapper } from "./style.js";
+import Button from "../Button";
 
 function Menu() {
-    return (
-        <nav className="Menu">
-            <a href="/">
-            <img className="Logo" src={Logo} alt="FrankFlix Logo"/>
-            </a>
+  return (
+    <MenuWrapper className="Menu">
+      <Link to="/">
+        <LogoImage src={Logo} alt="FrankFlix Logo" />
+      </Link>
 
-            <Button as="a" className="ButtonLink" href="/">
-                Novo vídeo
-            </Button>
-        </nav>
-    );
+      <Button as={Link} className="ButtonLink" to="/cadastro/video">
+        Novo vídeo
+      </Button>
+    </MenuWrapper>
+  );
 }
 
 export default Menu;

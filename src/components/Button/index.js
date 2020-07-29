@@ -10,7 +10,7 @@ const button = styled.button`
   font-weight: bold;
   font-size: 16px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 4px;
   text-decoration: none;
   display: inline-block;
   transition: opacity 0.3s;
@@ -18,6 +18,19 @@ const button = styled.button`
   &:hover,
   &:focus {
     opacity: 0.5;
+  }
+
+  @media (max-width: 800px) {
+    background-color: var(--primary);
+    border: 0;
+    border-radius: 0;
+    bottom: 0;
+    color: var(--white);
+    left: 0;
+    outline: 0;
+    position: fixed;
+    rigth: 0;
+    text-align: center;
   }
 `;
 
