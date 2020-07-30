@@ -29,7 +29,7 @@ const button = styled.button`
     left: 0;
     outline: 0;
     position: fixed;
-    rigth: 0;
+    right: 0;
     text-align: center;
   }
 `;
