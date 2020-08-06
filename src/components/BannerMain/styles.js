@@ -7,6 +7,7 @@ export const BannerMainContainer = styled.section`
   background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
   background-size: cover;
   background-position: center;
+  
   @media (max-width: 800px) {
     height: auto;
     min-height: 50vh;
@@ -43,7 +44,7 @@ export const ContentAreaContainer = styled.section`
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 10;
+
   @media (max-width: 800px) {
     padding-top: 100px;
     flex-direction: column;
@@ -54,6 +55,7 @@ ContentAreaContainer.Item = styled.div`
   width: 50%;
   display: inline-block;
   margin-bottom: 50px;
+
   @media (max-width: 800px) {
     width: 100%;
   }
@@ -102,7 +104,7 @@ ContentAreaContainer.Title = styled.h2`
 
 export const WatchButton = styled.button`
   background-color: var(--white);
-  border: 0;
+  border: 1px solid transparent;
   border-color: var(--black);
   border-radius: 4px;
   box-sizing: border-box;

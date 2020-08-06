@@ -1,4 +1,5 @@
 .Logo {
+    max-height: 40px;
     max-width: 168px;
   }
   @media (max-width: 800px) {

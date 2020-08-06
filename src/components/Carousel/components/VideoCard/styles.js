@@ -15,7 +15,7 @@ export const VideoCardContainer = styled.a`
   background-position: center;
   border-radius: 10px;
   position: relative;
-  display: flex;
+  display: inline-block ;
   align-items: flex-end;
   padding: 16px;
 

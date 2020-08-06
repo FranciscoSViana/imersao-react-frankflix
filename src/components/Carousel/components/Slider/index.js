@@ -1,6 +1,5 @@
 import React from "react";
 import SlickSlider from "react-slick";
-import stylder from "styled-components";
 import styled from "styled-components";
 
 const Container = styled.ul`
