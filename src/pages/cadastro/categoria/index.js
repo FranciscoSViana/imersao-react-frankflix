@@ -22,12 +22,16 @@ function CadastroCategoria() {
   }
 
   function HandleChange(infosDoEvento) {
-    const { getAttribute, value } = infosDoEvento.target;
-    setValue(getAttribute('name'), value);
+    setValue(
+      infosDoEvento.target.getAttribute('name'),
+      infosDoEvento.target.value,
+    );
   }
 
   useEffect(() => {
-    const URL_TOP = 'http://localhost:8080/categorias';
+    const URL_TOP = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://devfrankflix.herokuapp.com/categorias';
 
     fetch(URL_TOP)
       .then(async (respostaDoServidor) => {
