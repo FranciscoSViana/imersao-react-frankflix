@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const LogoImage = styled.img`
   max-width: 168px;
@@ -41,7 +41,7 @@ export const MenuWrapper = styled.nav`
 //   font-weight: bold;
 //   text-decoration: none;
 //   transition: opacity 0.3;
-  
+
 //   &:hover,
 //   &:focus {
 //     opacity: .5;
