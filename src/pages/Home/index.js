@@ -8,45 +8,47 @@ import categoriasRepository from '../../repositories/categorias';
 
 function Home() {
   const [dadosIniciais, setDadosIniciais] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     // http://localhost:8080/categorias?_embed=videos
-    categoriasRepository
-      .getAllWithVideos()
+    categoriasRepository.getAllWithVideos()
       .then((categoriasComVideos) => {
+        console.log(categoriasComVideos[0].videos[0]);
         setDadosIniciais(categoriasComVideos);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
-        setLoading(false);
       });
   }, []);
 
   return (
     <PageDefault paddingAll={0}>
-      {loading && !!dadosIniciais && dadosIniciais.length === 0 ? (
-        <div>Loading ...</div>
-      ) : (
-        dadosIniciais.map((categoria, indice) => {
-          if (indice === 0) {
-            return (
-              <div key={categoria.id}>
-                <BannerMain
-                  videoTitle={dadosIniciais[0].videos[0].titulo}
-                  url={dadosIniciais[0].videos[0].url}
-                  videoDescription={dadosIniciais[0].videos[0].description}
-                />
-                <Carousel ignoreFirstVideo category={dadosIniciais[0]} />
-              </div>
-            );
-          }
+      {dadosIniciais.length === 0 && (<div>Loading...</div>)}
 
-          return <Carousel key={categoria.id} category={categoria} />;
-        })
-      )}
+      {dadosIniciais.map((categoria, indice) => {
+        if (indice === 0) {
+          return (
+            <div key={categoria.id}>
+              <BannerMain
+                videoTitle={dadosIniciais[0].videos[0].titulo}
+                url={dadosIniciais[0].videos[0].url}
+                videoDescription={dadosIniciais[0].videos[0].description}
+              />
+              <Carousel
+                ignoreFirstVideo
+                category={dadosIniciais[0]}
+              />
+            </div>
+          );
+        }
+
+        return (
+          <Carousel
+            key={categoria.id}
+            category={categoria}
+          />
+        );
+      })}
 
       {/* <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
