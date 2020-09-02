@@ -1,8 +1,9 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from "../../assets/img/Frankflix.png";
-import { LogoImage, MenuWrapper } from "./style.js";
-import Button from "../Button";
+import Logo from '../../assets/img/Frankflix.png';
+import './Menu.css';
+import { LogoImage, MenuWrapper } from './style';
+import Button from '../Button';
 
 function Menu() {
   return (

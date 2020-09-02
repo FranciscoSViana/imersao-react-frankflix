@@ -1,33 +1,60 @@
-import React from 'react';
-import styled from 'styled-components';
-import Menu from '../../components/Menu';
-import dadosIniciais from '../../data/dados_iniciais.json';
+/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
+// import dadosIniciais from '../../data/dados_iniciais.json';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
-import Footer from '../../components/Footer';
-
-const AppWrapper = styled.div`
-background: var(--grayDark);
-
-padding-top: 94px;
-
-@media (max-width: 800px) {
-  padding-top: 40px;
-}
-`;
+import PageDefault from '../../components/PageDefault';
+import categoriasRepository from '../../repositories/categorias';
 
 function Home() {
-  return (
-    <AppWrapper>
-      <Menu />
+  const [dadosIniciais, setDadosIniciais] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-      <BannerMain 
+  useEffect(() => {
+    setLoading(true);
+    // http://localhost:8080/categorias?_embed=videos
+    categoriasRepository
+      .getAllWithVideos()
+      .then((categoriasComVideos) => {
+        setDadosIniciais(categoriasComVideos);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <PageDefault paddingAll={0}>
+      {loading && !!dadosIniciais && dadosIniciais.length === 0 ? (
+        <div>Loading ...</div>
+      ) : (
+        dadosIniciais.map((categoria, indice) => {
+          if (indice === 0) {
+            return (
+              <div key={categoria.id}>
+                <BannerMain
+                  videoTitle={dadosIniciais[0].videos[0].titulo}
+                  url={dadosIniciais[0].videos[0].url}
+                  videoDescription={dadosIniciais[0].videos[0].description}
+                />
+                <Carousel ignoreFirstVideo category={dadosIniciais[0]} />
+              </div>
+            );
+          }
+
+          return <Carousel key={categoria.id} category={categoria} />;
+        })
+      )}
+
+      {/* <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"O que é Front_end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem afinal? Descubra com a Vanessa!"}
-        />
-
+        videoDescription="O que"
+      />
       <Carousel
+        ignoreFirstVideo
         category={dadosIniciais.categorias[0]}
       />
       <Carousel
@@ -41,12 +68,8 @@ function Home() {
       />
       <Carousel
         category={dadosIniciais.categorias[4]}
-      />
-      <Carousel
-        category={dadosIniciais.categorias[5]}
-      />
-      <Footer/>
-    </AppWrapper>
+      /> */}
+    </PageDefault>
   );
 }
 
